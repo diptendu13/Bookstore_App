@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import Navbar from "./Components/Navbar";
+import BookGallery from "./Components/BookGallery";
+import Banner from "./Components/Banner";
 
-function App() {
+const App = () => {
+  const [results, setResults] = useState([]);
+  const [error, setError] = useState("");
+  const [selectedItem, setSelectedItem] = useState([]);
+  const [displayItem, setDisplayItem] = useState(false);
+  const [targetRef, setTargetRef] = useState({});
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar setResults={setResults} setError={setError} setSelectedItem={setSelectedItem} setDisplayItem={setDisplayItem} />
+      <Banner selectedItem={selectedItem} displayItem={displayItem} setTargetRef={setTargetRef} />
+      <BookGallery results={results} setSelectedItem={setSelectedItem} setDisplayItem={setDisplayItem} targetRef={targetRef} />
     </div>
-  );
+  )
 }
+
 
 export default App;
